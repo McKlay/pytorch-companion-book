@@ -1,0 +1,44 @@
+site_name: PyTorch Builder’s Companion Book
+site_url: https://yourusername.github.io/torch-book/
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: deep purple
+    accent: indigo
+  features:
+    - navigation.tabs
+    - content.code.copy
+    - search.suggest
+    - search.highlight
+    - navigation.indexes
+
+nav:
+  - Home: index.md
+  - Part I: Getting Started with torch
+    - Chapter 1: What is torch?: chapter1_what_is_torch.md
+    - Chapter 2: Installation & Setup: chapter2_installation_setup.md
+    - Chapter 3: Tensor Fundamentals: chapter3_tensor_fundamentals.md
+  - Part II: torch API Deep Dive
+    - Chapter 4: torch.Tensor: chapter4_tensor.md
+    - Chapter 5: Data Types and Devices: chapter5_dtype_device.md
+    - Chapter 6: Random Sampling and Seeding: chapter6_random_seed.md
+    - Chapter 7: Math Operations: chapter7_math_ops.md
+    - Chapter 8: Broadcasting and Shape Ops: chapter8_broadcast_shape.md
+    - Chapter 9: Autograd and Differentiation: chapter9_autograd.md
+    - Chapter 10: Type Conversions and Casting: chapter10_type_casting.md
+  - Part III: Specialized Modules in torch
+    - Chapter 11: torch.linalg: chapter11_linalg.md
+    - Chapter 12: torch.nn.functional and Activation Math: chapter12_nn_functional.md
+    - Chapter 13: torch.special: chapter13_special.md
+    - Chapter 14: torch.fft: chapter14_fft.md
+    - Chapter 15: torch.utils: chapter15_utils.md
+    - Chapter 16: torch.storage & memory_format: chapter16_storage_memory.md
+  - Part IV: torch in the Real World
+    - Chapter 17: Using torch with CUDA: chapter17_cuda.md
+    - Chapter 18: Integration with NumPy: chapter18_numpy.md
+    - Chapter 19: Debugging & Best Practices: chapter19_debugging.md
+  - Appendices:
+    - Tensor Shapes Cheat Sheet: appendix_shapes.md
+    - Idioms and Gotchas: appendix_idioms.md
+    - API Reference Crosswalk: appendix_api_reference.md
