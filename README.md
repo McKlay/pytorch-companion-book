@@ -89,7 +89,7 @@ Discussions for expansion (e.g., torchvision, torch.fx, torch.compile)
 
 ---
 
-License <br>
-MIT License © Clay Mark Sarte <br>
-You are free to fork, learn from, and build upon this work — with credit. <br>
-“Shape your tensors, or they will shape your debugging sessions.”
+License  
+MIT License © Clay Mark Sarte  
+You are free to fork, learn from, and build upon this work — with credit.  
+“Shape your tensors, or they will shape your debugging sessions.”  
