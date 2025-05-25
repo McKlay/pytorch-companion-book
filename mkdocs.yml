@@ -1,5 +1,7 @@
 site_name: PyTorch Builder’s Companion Book
 site_url: https://github.com/McKlay/pytorch-companion-book/
+site_author: Clay Mark Sarte
+site_description: A personal PyTorch companion book by Clay Mark Sarte — deep dives into the torch API for learners, devs, and researchers.
 
 theme:
   name: material
