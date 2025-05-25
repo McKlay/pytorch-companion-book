@@ -38,3 +38,5 @@ This book is organized by topic depth, starting with core `torch` principles and
 - Cross-references to PyTorch docs
 
 ---
+
+*Created and maintained by [Clay Mark Sarte](https://www.linkedin.com/in/clay-mark-sarte-283855147/)*
