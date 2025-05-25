@@ -73,7 +73,7 @@ cd pytorch-companion-book
 pip install mkdocs-material
 mkdocs serve
 View at: http://127.0.0.1:8000
-
+```
 ---
 
 Contributing
