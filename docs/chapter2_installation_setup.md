@@ -81,10 +81,11 @@ if torch.cuda.is_available():
 
 ## 2.5 CPU vs CUDA: Why It Matters
 
-Operation	CPU	CUDA (GPU)
-Matrix multiplication	Slower for large matrices	Highly optimized
-Memory access	Direct system memory	VRAM on GPU
-Use-case	Lightweight ML / debugging	Training large models
+|Operation	            |CPU	                        |CUDA (GPU)                 |
+|-----------------------|-------------------------------|---------------------------|
+|Matrix multiplication	|Slower for large matrices	    |Highly optimized           |
+|Memory access	        |Direct system memory	        |VRAM on GPU                |
+|Use-case	            |Lightweight ML / debugging	    |Training large models      |
 
 TL;DR: Use CUDA if available. It’s fast. Like, ridiculously fast.
 

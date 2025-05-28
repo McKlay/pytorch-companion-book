@@ -118,9 +118,9 @@ output = checkpoint(custom_forward, x)
 Used to test model speed under realistic loads.
 
 ### ➤ `cpp_extension`
-Compile and call custom CUDA/C++ kernels from Python — used in:
-- Detectron2
-- Hugging Face Transformers
+Compile and call custom CUDA/C++ kernels from Python — used in:  
+- Detectron2  
+- Hugging Face Transformers  
 - Other low-level optimization libraries
 
 > Very advanced — only needed if you’re building custom operators or native extensions.

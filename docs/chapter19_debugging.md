@@ -118,12 +118,12 @@ Structure your project:
 
 ## 19.7 Sanity Check Checklist
 
-✔ Do your model inputs/outputs have expected shapes?
-✔ Are `.requires_grad` flags correctly set?
-✔ Is your loss decreasing over time?
-✔ Do `.grad` values explode or vanish?
-✔ Did you call `.train()` and `.eval()` properly?
-✔ Are you detaching everything you log or store?
+✔ Do your model inputs/outputs have expected shapes?  
+✔ Are `.requires_grad` flags correctly set?  
+✔ Is your loss decreasing over time?  
+✔ Do `.grad` values explode or vanish?  
+✔ Did you call `.train()` and `.eval()` properly?  
+✔ Are you detaching everything you log or store?  
 ✔ Are any tensors stuck on CPU while the model is on GPU?
 
 ---

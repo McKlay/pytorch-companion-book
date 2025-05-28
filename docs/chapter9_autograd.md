@@ -125,19 +125,6 @@ Use x.grad.zero_() or optimizer.zero_grad() to prevent this.
 
 ---
 
-## 9.8 Gradient Accumulation
-
-By default, gradients accumulate:
-```python
-x = torch.tensor([2.0], requires_grad=True)
-y = x * 2
-y.backward()
-y.backward()
-print(x.grad)  # Will be 4 + 4 = 8
-```
-Use `x.grad.zero_()` or `optimizer.zero_grad()` to prevent this.
----
-
 ## 9.9 Summary
 
 - `requires_grad=True` enables gradient tracking for a tensor.

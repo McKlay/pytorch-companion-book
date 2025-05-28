@@ -16,7 +16,7 @@ Broadcasting lets PyTorch perform arithmetic operations on tensors of different 
 a = torch.tensor([[1], [2], [3]])   # Shape: (3, 1)
 b = torch.tensor([10, 20])         # Shape: (2,)
 c = a + b                          # Shape: (3, 2)
-
+```
 Here’s what PyTorch imagines behind the scenes:
 ```lua
 a = [[1],    b = [10, 20]   →   [[1+10, 1+20],
@@ -60,6 +60,7 @@ x.reshape(2, 3)            # OK anytime
 x.view(2, 3)               # Only if x is contiguous
 ```
 > `reshape()` is `safer`, `view()` is faster but stricter.
+
 ---
 
 ### 🔹 `squeeze()` and `unsqueeze()`
@@ -71,11 +72,13 @@ x.squeeze()       # shape: (3,)
 x.unsqueeze(0)    # shape: (1, 1, 3, 1)
 ```
 > Essential for converting between batch and single-item tensors.
+
 ---
 
 ### 🔹 `expand()` vs `repeat()`
-Both make a tensor appear larger — but in **very different ways**.
-- `expand(`): No memory copy. Just a view.
+Both make a tensor appear larger — but in **very different ways**.  
+
+- `expand`(): No memory copy. Just a view.
 ```python
 x = torch.tensor([[1], [2]])
 x.expand(2, 3)  # OK: repeats the column virtually
@@ -85,9 +88,11 @@ x.expand(2, 3)  # OK: repeats the column virtually
 x.repeat(1, 3)   # Actually allocates more memory
 ```
 > ✅ Use expand() when possible. It’s faster and leaner.
+
 ---
 
 ### 🔹 `permute()` and `transpose()`
+
 - permute() — changes *any* dimension order
 ```python
 x = torch.randn(2, 3, 4)

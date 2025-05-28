@@ -73,9 +73,9 @@ torch.special.digamma(torch.tensor([1.0, 2.0, 3.0]))
 ```python
 torch.special.i0(torch.tensor([0.0, 1.0, 2.0]))
 ```
-Used in:
-- Waveform analysis
-- Physics simulations
+Used in:  
+- Waveform analysis  
+- Physics simulations  
 - Signal modeling
 
 ### 🔹 `torch.special.xlogy(x, y)` — Stable `x * log(y)`

@@ -29,7 +29,7 @@ torch.zeros_like(x)
 torch.rand_like(x)
 ```
 ## 📐 4.2 Tensor Properties
-Every tensor has a few critical attributes:
+Every tensor has a few critical attributes:  
 **🔸 shape and size()**
 ```python
 x.shape            # torch.Size([2, 3])

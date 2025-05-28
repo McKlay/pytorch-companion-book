@@ -121,15 +121,15 @@ LU, pivots = torch.linalg.lu_factor(A)
 ---
 
 ## 11.8 Relationship with NumPy
-PyTorch’s `torch.linalg` mirrors `numpy.linalg` in:
-- Function names
-- Shape conventions
+PyTorch’s `torch.linalg` mirrors `numpy.linalg` in:  
+- Function names  
+- Shape conventions  
 - Numerical semantics
 
-But PyTorch:
-- ✅ Supports autograd
-- ✅ Runs on GPU
-- ✅ Handles batch operations
+But PyTorch:  
+- ✅ Supports autograd  
+- ✅ Runs on GPU  
+- ✅ Handles batch operations  
 
 > You can almost always port NumPy linear algebra code directly to PyTorch with minimal edits.
 
