@@ -45,3 +45,9 @@ nav:
       - "Tensor Shapes Cheat Sheet": appendix_shapes.md
       - "Idioms and Gotchas": appendix_idioms.md
       - "API Reference Crosswalk": appendix_api_reference.md
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - codehilite:
+      guess_lang: false
