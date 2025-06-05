@@ -1,0 +1,1722 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A personal PyTorch companion book by Clay Mark Sarte — deep dives into the torch API for learners, devs, and researchers.">
+      
+      
+        <meta name="author" content="Clay Mark Sarte">
+      
+      
+        <link rel="canonical" href="https://github.com/McKlay/pytorch-companion-book/chapter18_numpy/">
+      
+      
+        <link rel="prev" href="../chapter17_cuda/">
+      
+      
+        <link rel="next" href="../chapter19_debugging/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Chapter 18: Integration with NumPy - PyTorch Builder’s Companion Book</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-18-integration-with-numpy" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="PyTorch Builder’s Companion Book" class="md-header__button md-logo" aria-label="PyTorch Builder’s Companion Book" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyTorch Builder’s Companion Book
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 18: Integration with NumPy
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../chapter1_what_is_torch/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part I: Getting Started with torch
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../chapter4_tensor/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part II: torch API Deep Dive
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../chapter11_linalg/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part III: Specialized Modules in torch
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../chapter17_cuda/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part IV: torch in the Real World
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../appendix_shapes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Appendices
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PyTorch Builder’s Companion Book" class="md-nav__button md-logo" aria-label="PyTorch Builder’s Companion Book" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    PyTorch Builder’s Companion Book
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Part I: Getting Started with torch
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Part I: Getting Started with torch
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter1_what_is_torch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1: What is torch?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter2_installation_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2: Installation & Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3_tensor_fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: Tensor Fundamentals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Part II: torch API Deep Dive
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Part II: torch API Deep Dive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter4_tensor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4: torch.Tensor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter5_dtype_device/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5: Data Types and Devices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6_random_seed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Random Sampling and Seeding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter7_math_ops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7: Math Operations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter8_broadcast_shape/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8: Broadcasting and Shape Ops
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter9_autograd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9: Autograd and Differentiation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter10_type_casting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10: Type Conversions and Casting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Part III: Specialized Modules in torch
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Part III: Specialized Modules in torch
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter11_linalg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11: torch.linalg
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter12_nn_functional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12: torch.nn.functional and Activation Math
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter13_special/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 13: torch.special
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter14_fft/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 14: torch.fft
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter15_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 15: torch.utils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter16_storage_memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 16: torch.storage & memory_format
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Part IV: torch in the Real World
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Part IV: torch in the Real World
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter17_cuda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 17: Using torch with CUDA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Chapter 18: Integration with NumPy
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 18: Integration with NumPy
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#181-why-integrate-with-numpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      18.1 Why Integrate with NumPy?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#182-torchfrom_numpy-numpy-tensor" class="md-nav__link">
+    <span class="md-ellipsis">
+      18.2 torch.from_numpy() — NumPy ➜ Tensor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#183-numpy-tensor-numpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      18.3 .numpy() — Tensor ➜ NumPy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="18.3 .numpy() — Tensor ➜ NumPy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#but-you-must-be-on-the-cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛑 But you must be on the CPU:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#184-use-case-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      18.4 Use Case Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="18.4 Use Case Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#matplotlib-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ Matplotlib visualization:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pandas-csv-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ Pandas &amp; CSV I/O:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-extraction-math-ops" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ Feature extraction / math ops:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#185-zero-copy-interoperability" class="md-nav__link">
+    <span class="md-ellipsis">
+      18.5 Zero-Copy Interoperability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#186-when-not-to-use-numpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚫 18.6 When Not to Use .numpy()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#187-tips-for-interfacing-with-numpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      18.7 Tips for Interfacing with NumPy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#188-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      18.8 Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter19_debugging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 19: Debugging & Best Practices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Appendices
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Appendices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix_shapes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tensor Shapes Cheat Sheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix_idioms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Idioms and Gotchas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix_api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference Crosswalk
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#181-why-integrate-with-numpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      18.1 Why Integrate with NumPy?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#182-torchfrom_numpy-numpy-tensor" class="md-nav__link">
+    <span class="md-ellipsis">
+      18.2 torch.from_numpy() — NumPy ➜ Tensor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#183-numpy-tensor-numpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      18.3 .numpy() — Tensor ➜ NumPy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="18.3 .numpy() — Tensor ➜ NumPy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#but-you-must-be-on-the-cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛑 But you must be on the CPU:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#184-use-case-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      18.4 Use Case Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="18.4 Use Case Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#matplotlib-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ Matplotlib visualization:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pandas-csv-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ Pandas &amp; CSV I/O:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-extraction-math-ops" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ Feature extraction / math ops:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#185-zero-copy-interoperability" class="md-nav__link">
+    <span class="md-ellipsis">
+      18.5 Zero-Copy Interoperability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#186-when-not-to-use-numpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚫 18.6 When Not to Use .numpy()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#187-tips-for-interfacing-with-numpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      18.7 Tips for Interfacing with NumPy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#188-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      18.8 Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="chapter-18-integration-with-numpy">Chapter 18: Integration with NumPy</h1>
+<blockquote>
+<p>“Two libraries. One memory space. No nonsense.”</p>
+</blockquote>
+<hr />
+<h2 id="181-why-integrate-with-numpy">18.1 Why Integrate with NumPy?</h2>
+<p><strong>NumPy</strong> is the OG of numerical computing in Python. Even if you're deep into PyTorch, you’ll often need to:</p>
+<ul>
+<li>Preprocess data with NumPy  </li>
+<li>Use NumPy functions not in PyTorch  </li>
+<li>Interface with external libs (e.g., OpenCV, SciPy, Pandas)  </li>
+<li>Visualize tensors using matplotlib or seaborn  </li>
+</ul>
+<blockquote>
+<p>PyTorch makes this easy by letting you <strong>share memory</strong> between <code>torch.Tensor</code> and <code>np.ndarray</code>.</p>
+</blockquote>
+<hr />
+<h2 id="182-torchfrom_numpy-numpy-tensor">18.2 <code>torch.from_numpy()</code> — NumPy ➜ Tensor</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+<span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>  <span class="c1"># tensor([99., 2., 3.])</span>
+</code></pre></div>
+<blockquote>
+<p>This is fast and efficient — no memory copy.</p>
+</blockquote>
+<hr />
+<h2 id="183-numpy-tensor-numpy">18.3 .numpy() — Tensor ➜ NumPy</h2>
+<p><div class="highlight"><pre><span></span><code><span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</code></pre></div>
+Again, same memory — not a copy.</p>
+<h3 id="but-you-must-be-on-the-cpu">🛑 But you must be on the CPU:</h3>
+<div class="highlight"><pre><span></span><code><span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>  <span class="c1"># Must move to CPU first!</span>
+</code></pre></div>
+<hr />
+<h2 id="184-use-case-examples">18.4 Use Case Examples</h2>
+<h3 id="matplotlib-visualization">➤ Matplotlib visualization:</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="pandas-csv-io">➤ Pandas &amp; CSV I/O:</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data.csv&#39;</span><span class="p">)</span>
+<span class="n">tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="feature-extraction-math-ops">➤ Feature extraction / math ops:</h3>
+<p><div class="highlight"><pre><span></span><code><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+Use NumPy when you need broadcasting or functions that PyTorch lacks (e.g., np.percentile()).</p>
+<hr />
+<h2 id="185-zero-copy-interoperability">18.5 Zero-Copy Interoperability</h2>
+<p>The NumPy↔Torch conversion is zero-copy. That’s great, but watch for:</p>
+<table>
+<thead>
+<tr>
+<th>Gotcha</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CUDA tensors can't <code>.numpy()</code></td>
+<td>Move to CPU first: t.cpu()<code>.numpy()</code></td>
+</tr>
+<tr>
+<td>Detached views may be unsafe</td>
+<td>Use <code>.clone()</code> if unsure</td>
+</tr>
+<tr>
+<td>Mixed float types (e.g. float64)</td>
+<td>Use <code>.float()</code> before model usage</td>
+</tr>
+<tr>
+<td>In-place ops affect both</td>
+<td>Clone before modifying either</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="186-when-not-to-use-numpy">🚫 18.6 When Not to Use <code>.numpy()</code></h2>
+<p>Avoid inside:</p>
+<ul>
+<li>
+<p>Training loops — breaks CUDA pipelines and slows performance</p>
+</li>
+<li>
+<p>Tensors requiring gradients — <code>.numpy()</code> drops the computation graph</p>
+</li>
+<li>
+<p>GPU batches — unnecessary overhead</p>
+</li>
+</ul>
+<p>Use <code>.numpy()</code> only for:</p>
+<ul>
+<li>
+<p>Visualization</p>
+</li>
+<li>
+<p>Evaluation</p>
+</li>
+<li>
+<p>Exporting data</p>
+</li>
+<li>
+<p>Debugging</p>
+</li>
+</ul>
+<hr />
+<h2 id="187-tips-for-interfacing-with-numpy">18.7 Tips for Interfacing with NumPy</h2>
+<ul>
+<li>Use <code>.detach().cpu().numpy()</code> to safely extract predictions:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">np_preds</span> <span class="o">=</span> <span class="n">preds</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</code></pre></div>
+<ul>
+<li>
+<p>Convert back to <code>float32</code> if NumPy defaults to <code>float64</code>:
+<div class="highlight"><pre><span></span><code><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Use <code>.contiguous()</code> if you hit <strong>weird shape bugs</strong>:
+<div class="highlight"><pre><span></span><code><span class="n">tensor</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()</span>
+</code></pre></div></p>
+</li>
+</ul>
+<hr />
+<h2 id="188-summary">18.8 Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Direction</th>
+<th>Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NumPy → Tensor</td>
+<td><code>torch.from_numpy()</code></td>
+</tr>
+<tr>
+<td>Tensor → NumPy</td>
+<td><code>.numpy()</code></td>
+</tr>
+<tr>
+<td>Ensure CPU-only</td>
+<td><code>.cpu().numpy()</code></td>
+</tr>
+<tr>
+<td>Keep gradients safe</td>
+<td><code>.detach().cpu().numpy()</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>PyTorch and NumPy <strong>play together beautifully</strong> — just watch out for <strong>GPU vs CPU</strong> boundaries</p>
+</li>
+<li>
+<p>These conversions are <strong>efficient</strong>, but must be used with care during <strong>training</strong></p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "content.code.copy", "search.suggest", "search.highlight", "navigation.indexes"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

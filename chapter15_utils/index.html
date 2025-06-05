@@ -1,0 +1,1840 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A personal PyTorch companion book by Clay Mark Sarte — deep dives into the torch API for learners, devs, and researchers.">
+      
+      
+        <meta name="author" content="Clay Mark Sarte">
+      
+      
+        <link rel="canonical" href="https://github.com/McKlay/pytorch-companion-book/chapter15_utils/">
+      
+      
+        <link rel="prev" href="../chapter14_fft/">
+      
+      
+        <link rel="next" href="../chapter16_storage_memory/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Chapter 15: torch.utils - PyTorch Builder’s Companion Book</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-15-torchutils" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="PyTorch Builder’s Companion Book" class="md-header__button md-logo" aria-label="PyTorch Builder’s Companion Book" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyTorch Builder’s Companion Book
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 15: torch.utils
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../chapter1_what_is_torch/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part I: Getting Started with torch
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../chapter4_tensor/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part II: torch API Deep Dive
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../chapter11_linalg/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part III: Specialized Modules in torch
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../chapter17_cuda/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part IV: torch in the Real World
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../appendix_shapes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Appendices
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PyTorch Builder’s Companion Book" class="md-nav__button md-logo" aria-label="PyTorch Builder’s Companion Book" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    PyTorch Builder’s Companion Book
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Part I: Getting Started with torch
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Part I: Getting Started with torch
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter1_what_is_torch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1: What is torch?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter2_installation_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2: Installation & Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3_tensor_fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3: Tensor Fundamentals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Part II: torch API Deep Dive
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Part II: torch API Deep Dive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter4_tensor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4: torch.Tensor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter5_dtype_device/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5: Data Types and Devices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6_random_seed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6: Random Sampling and Seeding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter7_math_ops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7: Math Operations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter8_broadcast_shape/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8: Broadcasting and Shape Ops
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter9_autograd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9: Autograd and Differentiation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter10_type_casting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10: Type Conversions and Casting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Part III: Specialized Modules in torch
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Part III: Specialized Modules in torch
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter11_linalg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11: torch.linalg
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter12_nn_functional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12: torch.nn.functional and Activation Math
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter13_special/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 13: torch.special
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter14_fft/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 14: torch.fft
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Chapter 15: torch.utils
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 15: torch.utils
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#151-what-is-torchutils" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.1 What is torch.utils?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#152-torchutilsdata-custom-datasets-and-dataloaders" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.2 torch.utils.data — Custom Datasets and DataLoaders
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15.2 torch.utils.data — Custom Datasets and DataLoaders">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-custom-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ Create a Custom Dataset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-with-dataloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ Use with DataLoader
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#153-built-in-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.3 Built-in Helpers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15.3 Built-in Helpers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tensordataset-wrap-tensors-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ TensorDataset — Wrap tensors directly
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concatdataset-subset-randomsampler" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ ConcatDataset, Subset, RandomSampler
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#154-torchutilstensorboard-visualize-your-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.4 torch.utils.tensorboard — Visualize Your Training
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15.4 torch.utils.tensorboard — Visualize Your Training">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#track-loss-accuracy-gradients" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ Track loss, accuracy, gradients:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#55-torchutilscheckpoint-save-memory-with-recompute" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5 torch.utils.checkpoint — Save Memory with Recompute
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.5 torch.utils.checkpoint — Save Memory with Recompute">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wrap-part-of-the-forward-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ Wrap part of the forward pass:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#156-other-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.6 Other Utilities
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15.6 Other Utilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#throughput_benchmark" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ throughput_benchmark
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpp_extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ cpp_extension
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#157-real-world-workflow-using-torchutils" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.7 Real-World Workflow Using torch.utils
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#158-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 15.8 Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter16_storage_memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 16: torch.storage & memory_format
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Part IV: torch in the Real World
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Part IV: torch in the Real World
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter17_cuda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 17: Using torch with CUDA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter18_numpy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 18: Integration with NumPy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter19_debugging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 19: Debugging & Best Practices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Appendices
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Appendices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix_shapes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tensor Shapes Cheat Sheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix_idioms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Idioms and Gotchas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix_api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference Crosswalk
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#151-what-is-torchutils" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.1 What is torch.utils?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#152-torchutilsdata-custom-datasets-and-dataloaders" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.2 torch.utils.data — Custom Datasets and DataLoaders
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15.2 torch.utils.data — Custom Datasets and DataLoaders">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-custom-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ Create a Custom Dataset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-with-dataloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ Use with DataLoader
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#153-built-in-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.3 Built-in Helpers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15.3 Built-in Helpers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tensordataset-wrap-tensors-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ TensorDataset — Wrap tensors directly
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concatdataset-subset-randomsampler" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ ConcatDataset, Subset, RandomSampler
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#154-torchutilstensorboard-visualize-your-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.4 torch.utils.tensorboard — Visualize Your Training
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15.4 torch.utils.tensorboard — Visualize Your Training">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#track-loss-accuracy-gradients" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ Track loss, accuracy, gradients:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#55-torchutilscheckpoint-save-memory-with-recompute" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5 torch.utils.checkpoint — Save Memory with Recompute
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.5 torch.utils.checkpoint — Save Memory with Recompute">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wrap-part-of-the-forward-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ Wrap part of the forward pass:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#156-other-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.6 Other Utilities
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15.6 Other Utilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#throughput_benchmark" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ throughput_benchmark
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpp_extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      ➤ cpp_extension
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#157-real-world-workflow-using-torchutils" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.7 Real-World Workflow Using torch.utils
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#158-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 15.8 Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="chapter-15-torchutils">Chapter 15: <code>torch.utils</code></h1>
+<blockquote>
+<p>“Without utils, it’s just you and a for-loop in the wilderness.”</p>
+</blockquote>
+<hr />
+<h2 id="151-what-is-torchutils">15.1 What is <code>torch.utils</code>?</h2>
+<p><code>torch.utils</code> is a collection of <strong>essential utilities</strong> that make PyTorch practical for real-world training:</p>
+<ul>
+<li><code>data</code>: Dataset &amp; DataLoader interface  </li>
+<li><code>tensorboard</code>: Visualize training progress  </li>
+<li><code>checkpoint</code>: Save &amp; resume models / reduce memory  </li>
+<li><code>cpp_extension</code>, <code>throughput_benchmark</code>, etc.</li>
+</ul>
+<blockquote>
+<p>We’ll focus on the most important parts you’ll use <strong>almost daily</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="152-torchutilsdata-custom-datasets-and-dataloaders">15.2 <code>torch.utils.data</code> — Custom Datasets and DataLoaders</h2>
+<p>This submodule is the <strong>backbone of PyTorch’s training loop</strong>.</p>
+<h3 id="create-a-custom-dataset">➤ Create a Custom Dataset</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MyDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="use-with-dataloader">➤ Use with DataLoader</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataLoader</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">MyDataset</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,)))</span>
+<span class="n">loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">batch_data</span><span class="p">,</span> <span class="n">batch_labels</span> <span class="ow">in</span> <span class="n">loader</span><span class="p">:</span>
+    <span class="k">pass</span>  <span class="c1"># training loop here</span>
+</code></pre></div>
+<blockquote>
+<p>✅ DataLoader handles batching, shuffling, multiprocessing (num_workers), and pinning memory to improve performance.</p>
+</blockquote>
+<hr />
+<h2 id="153-built-in-helpers">15.3 Built-in Helpers</h2>
+<h3 id="tensordataset-wrap-tensors-directly">➤ TensorDataset — Wrap tensors directly</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">TensorDataset</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">TensorDataset</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,)))</span>
+</code></pre></div>
+<h3 id="concatdataset-subset-randomsampler">➤ <code>ConcatDataset</code>, <code>Subset</code>, <code>RandomSampler</code></h3>
+<p>These let you:</p>
+<ul>
+<li>Combine datasets (<code>ConcatDataset</code>)</li>
+<li>Take slices (<code>Subset</code>)</li>
+<li>Customize sample orders (<code>Sampler</code>, <code>WeightedRandomSampler</code>)</li>
+</ul>
+<hr />
+<h2 id="154-torchutilstensorboard-visualize-your-training">15.4 <code>torch.utils.tensorboard</code> — Visualize Your Training</h2>
+<h3 id="track-loss-accuracy-gradients">➤ Track loss, accuracy, gradients:</h3>
+<p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.tensorboard</span><span class="w"> </span><span class="kn">import</span> <span class="n">SummaryWriter</span>
+
+<span class="n">writer</span> <span class="o">=</span> <span class="n">SummaryWriter</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">train_loss</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="mi">10</span> <span class="o">-</span> <span class="n">epoch</span><span class="p">)</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="s1">&#39;Loss/train&#39;</span><span class="p">,</span> <span class="n">train_loss</span><span class="p">,</span> <span class="n">epoch</span><span class="p">)</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">add_histogram</span><span class="p">(</span><span class="s1">&#39;Weights/layer1&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="n">epoch</span><span class="p">)</span>
+
+<span class="n">writer</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+</code></pre></div>
+Then launch with:
+<div class="highlight"><pre><span></span><code>tensorboard<span class="w"> </span>--logdir<span class="o">=</span>runs/
+</code></pre></div></p>
+<blockquote>
+<p>Great for comparing experiments, visualizing embeddings, and debugging weird training plateaus.</p>
+</blockquote>
+<hr />
+<h2 id="55-torchutilscheckpoint-save-memory-with-recompute">5.5 <code>torch.utils.checkpoint</code> — Save Memory with Recompute</h2>
+<p>Use this to trade compute for memory in huge models like Transformers or ResNets.</p>
+<h3 id="wrap-part-of-the-forward-pass">➤ Wrap part of the forward pass:</h3>
+<p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.checkpoint</span><span class="w"> </span><span class="kn">import</span> <span class="n">checkpoint</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">custom_forward</span><span class="p">(</span><span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">model</span><span class="p">(</span><span class="o">*</span><span class="n">inputs</span><span class="p">)</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">(</span><span class="n">custom_forward</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</code></pre></div>
+- PyTorch will discard intermediate tensors during forward()</p>
+<ul>
+<li>Recompute them during .backward() to save GPU memory</li>
+</ul>
+<hr />
+<h2 id="156-other-utilities">15.6 Other Utilities</h2>
+<h3 id="throughput_benchmark">➤ <code>throughput_benchmark</code></h3>
+<p>Used to test model speed under realistic loads.</p>
+<h3 id="cpp_extension">➤ <code>cpp_extension</code></h3>
+<p>Compile and call custom CUDA/C++ kernels from Python — used in:<br />
+- Detectron2<br />
+- Hugging Face Transformers<br />
+- Other low-level optimization libraries</p>
+<blockquote>
+<p>Very advanced — only needed if you’re building custom operators or native extensions.</p>
+</blockquote>
+<hr />
+<h2 id="157-real-world-workflow-using-torchutils">15.7 Real-World Workflow Using <code>torch.utils</code></h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Tool Used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Batch loading</td>
+<td><code>DataLoader</code></td>
+</tr>
+<tr>
+<td>Custom data pipeline</td>
+<td><code>Dataset</code> subclass</td>
+</tr>
+<tr>
+<td>Visual logging</td>
+<td><code>tensorboard.SummaryWriter</code></td>
+</tr>
+<tr>
+<td>Save VRAM in deep nets</td>
+<td><code>checkpoint()</code></td>
+</tr>
+<tr>
+<td>Combine multiple datasets</td>
+<td><code>ConcatDataset</code>, <code>Subset</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>✅ These are the unsung heroes of PyTorch — not mathematical, but without them, every model would be a pain to train, debug, or scale.</p>
+</blockquote>
+<hr />
+<h2 id="158-summary">✅ 15.8 Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Submodule</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>Datasets, DataLoaders, batching</td>
+</tr>
+<tr>
+<td><code>tensorboard</code></td>
+<td>Visualize metrics, histograms, images</td>
+</tr>
+<tr>
+<td><code>checkpoint</code></td>
+<td>Memory-efficient training</td>
+</tr>
+<tr>
+<td><code>cpp_extension</code></td>
+<td>Write custom kernels (advanced)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p><code>torch.utils</code> turns raw PyTorch into a full-blown ML framework</p>
+</li>
+<li>
+<p>You’ll use <code>data</code> and <code>tensorboard</code> in every project</p>
+</li>
+<li>
+<p>Use <code>checkpoint</code> when running out of VRAM or fitting giant nets</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "content.code.copy", "search.suggest", "search.highlight", "navigation.indexes"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
