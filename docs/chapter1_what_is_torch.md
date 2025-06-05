@@ -60,6 +60,6 @@ In the next chapter, we’ll fully dissect `torch.Tensor` and show you just how 
 
 - Everything in PyTorch builds on top of `torch.Tensor`.
 
-> Whether you’re training an LSTM on Shakespeare or building a diffusion model for image generation — `torch` is the engine under the hood. So buckle up, we’re diving deep.
+> *Whether you’re training an LSTM on Shakespeare or building a diffusion model for image generation — `torch` is the engine under the hood. So buckle up, we’re diving deep.*
 
 
