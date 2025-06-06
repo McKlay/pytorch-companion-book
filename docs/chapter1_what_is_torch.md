@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Chapter 1: What is `torch` and Why Does It Matter?
 
 ## 1.1 Welcome to the Core of PyTorch

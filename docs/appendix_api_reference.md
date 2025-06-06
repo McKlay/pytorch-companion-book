@@ -1,5 +1,9 @@
+---
+hide:
+    - toc
+---
 
-# 🗂 Appendix C: Full `torch` API Reference Crosswalk
+# Appendix C: Full `torch` API Reference Crosswalk
 
 > “All the power. One list.”
 

@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Chapter 18: Integration with NumPy
 
 > “Two libraries. One memory space. No nonsense.”

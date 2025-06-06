@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Chapter 8: Broadcasting and Shape Ops
 
 > “Shape your tensors, or they will shape your debugging sessions.”

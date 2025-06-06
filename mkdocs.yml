@@ -6,48 +6,82 @@ site_description: A personal PyTorch companion book by Clay Mark Sarte — deep 
 theme:
   name: material
   palette:
-    scheme: slate
-    primary: deep purple
-    accent: indigo
+    - scheme: default
+      primary: blue
+      accent: light blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - scheme: slate
+      primary: deep purple
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
   features:
-    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
     - content.code.copy
+    - content.code.annotate
     - search.suggest
     - search.highlight
-    - navigation.indexes
+  hide:
+    - toc
 
 nav:
-  - Home: index.md
-  - "Part I: Getting Started with torch":
-      - "Chapter 1: What is torch?": chapter1_what_is_torch.md
-      - "Chapter 2: Installation & Setup": chapter2_installation_setup.md
-      - "Chapter 3: Tensor Fundamentals": chapter3_tensor_fundamentals.md
-  - "Part II: torch API Deep Dive":
-      - "Chapter 4: torch.Tensor": chapter4_tensor.md
-      - "Chapter 5: Data Types and Devices": chapter5_dtype_device.md
-      - "Chapter 6: Random Sampling and Seeding": chapter6_random_seed.md
-      - "Chapter 7: Math Operations": chapter7_math_ops.md
-      - "Chapter 8: Broadcasting and Shape Ops": chapter8_broadcast_shape.md
-      - "Chapter 9: Autograd and Differentiation": chapter9_autograd.md
-      - "Chapter 10: Type Conversions and Casting": chapter10_type_casting.md
-  - "Part III: Specialized Modules in torch":
-      - "Chapter 11: torch.linalg": chapter11_linalg.md
-      - "Chapter 12: torch.nn.functional and Activation Math": chapter12_nn_functional.md
-      - "Chapter 13: torch.special": chapter13_special.md
-      - "Chapter 14: torch.fft": chapter14_fft.md
-      - "Chapter 15: torch.utils": chapter15_utils.md
-      - "Chapter 16: torch.storage & memory_format": chapter16_storage_memory.md
-  - "Part IV: torch in the Real World":
-      - "Chapter 17: Using torch with CUDA": chapter17_cuda.md
-      - "Chapter 18: Integration with NumPy": chapter18_numpy.md
-      - "Chapter 19: Debugging & Best Practices": chapter19_debugging.md
-  - Appendices:
-      - "Tensor Shapes Cheat Sheet": appendix_shapes.md
-      - "Idioms and Gotchas": appendix_idioms.md
-      - "API Reference Crosswalk": appendix_api_reference.md
+  - Table of Contents: index.md
+
+  - "":
+      - "&nbsp; Preface": Preface.md
+      - "&nbsp;&nbsp; 📖 Part I: Getting Started with torch": PartI_overview.md
+      - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 1": chapter1_what_is_torch.md
+      - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 2": chapter2_installation_setup.md
+      - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 3": chapter3_tensor_fundamentals.md
+
+      - "&nbsp;&nbsp; 📖 Part II: torch API Deep Dive": PartII_overview.md
+      - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 4": chapter4_tensor.md
+      - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 5": chapter5_dtype_device.md
+      - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 6": chapter6_random_seed.md
+      - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 7": chapter7_math_ops.md
+      - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 8": chapter8_broadcast_shape.md
+      - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 9": chapter9_autograd.md
+      - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 10": chapter10_type_casting.md
+
+      - "&nbsp;&nbsp; 📖 Part III: Special Modules": PartIII_overview.md
+      - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 11": chapter11_linalg.md
+      - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 12": chapter12_nn_functional.md
+      - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 13": chapter13_special.md
+      - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 14": chapter14_fft.md
+      - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 15": chapter15_utils.md
+      - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 16": chapter16_storage_memory.md
+
+      - "&nbsp;&nbsp; 📖 Part IV: Real-World Application": PartIV_overview.md
+      - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 17": chapter17_cuda.md
+      - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 18": chapter18_numpy.md
+      - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 19": chapter19_debugging.md
+
+      - "&nbsp;&nbsp; 📖 Appendices":
+        - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tensor Shapes": appendix_shapes.md
+        - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Idioms & Gotchas": appendix_idioms.md
+        - "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; API Reference": appendix_api_reference.md
 
 markdown_extensions:
-  - pymdownx.highlight
+  - toc:
+      permalink: true
+  - admonition
+  - footnotes
+  - codehilite
   - pymdownx.superfences
-  - codehilite:
-      guess_lang: false
+  - pymdownx.highlight
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/McKlay
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/clay-mark-sarte-283855147/

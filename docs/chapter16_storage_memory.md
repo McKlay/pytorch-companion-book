@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Chapter 16: `torch.storage`, `torch.memory_format`, and Low-Level Tensor Memory
 
 > “Because knowing how your tensors are stored can save you time, memory, and sanity.”

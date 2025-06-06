@@ -76,20 +76,24 @@ View at: http://127.0.0.1:8000
 ```
 ---
 
-Contributing
+## Contributing  
+
 Contributions, ideas, and corrections are welcome!
 
 Feel free to open:
 
-PRs to add or improve chapters
+  * PRs to add or improve chapters
 
-Issues for broken examples or typos
+  * Issues for broken examples or typos
 
-Discussions for expansion (e.g., torchvision, torch.fx, torch.compile)
+  * Discussions for expansion (e.g., torchvision, torch.fx, torch.compile)
 
 ---
 
-License  
+## License  
 MIT License © Clay Mark Sarte  
 You are free to fork, learn from, and build upon this work — with credit.  
 “Shape your tensors, or they will shape your debugging sessions.”  
+
+---
+

@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Appendix B: PyTorch Idioms and Gotchas
 
 > “Read this before your model does something stupid.”

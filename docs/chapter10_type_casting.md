@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Chapter 10: Type Conversions and Casting
 
 > “Wrong dtype, wrong device — game over.”

@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Chapter 9: Autograd and Differentiation
 
 > “If tensors are the muscles, autograd is the nervous system.”

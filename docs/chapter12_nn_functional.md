@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Chapter 12: `torch.nn.functional` and Activation Math
 
 > “When you don’t need a layer, you just need a function.”

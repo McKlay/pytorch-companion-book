@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Chapter 13: `torch.special`
 
 > “When you need more than just relu... enter special ops.”

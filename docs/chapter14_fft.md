@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Chapter 14: `torch.fft`
 
 > “When you leave time behind and think in frequencies.”

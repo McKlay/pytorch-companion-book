@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Chapter 19: Debugging, Profiling, and Best Practices
 
 > “Where code either gets smarter… or gets you fired.”

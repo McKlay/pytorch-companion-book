@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Chapter 5: Data Types and Devices
 
 > “Precision and placement — the twin pillars of efficient tensor computation.”

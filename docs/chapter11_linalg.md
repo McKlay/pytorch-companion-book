@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Chapter 11: `torch.linalg`
 
 > “With great matrices comes great responsibility.”

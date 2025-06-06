@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Chapter 17: Using `torch` with CUDA
 
 > “If your tensors aren’t on the GPU, are they even lifting?”

@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Chapter 15: `torch.utils`
 
 > “Without utils, it’s just you and a for-loop in the wilderness.”

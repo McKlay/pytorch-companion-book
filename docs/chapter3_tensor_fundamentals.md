@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Chapter 3: Tensor Fundamentals
 
 > “Before we reshape the world with tensors, let’s understand what they truly are.”

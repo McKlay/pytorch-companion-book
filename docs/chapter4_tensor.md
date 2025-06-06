@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Chapter 4: `torch.Tensor`
 
 > “The universe of PyTorch begins with a single tensor—and everything else builds on top of it.”

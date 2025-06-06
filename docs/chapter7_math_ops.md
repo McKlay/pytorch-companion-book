@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Chapter 7: Math Operations
 
 > “Give me a tensor and a math op, and I will move the machine learning world.”

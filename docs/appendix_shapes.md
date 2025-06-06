@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Appendix A: Tensor Shapes Cheat Sheet
 
 > “Because debugging starts with dimensions.”

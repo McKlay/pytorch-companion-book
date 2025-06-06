@@ -1,3 +1,8 @@
+---
+hide:
+    - toc
+---
+
 # Chapter 6: Random Sampling and Seeding
 
 > “To master the chaos, you must first control the dice.”
