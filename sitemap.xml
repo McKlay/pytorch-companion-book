@@ -2,94 +2,114 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
+    </url>
+    <url>
+         <loc>https://github.com/McKlay/pytorch-companion-book/PartIII_overview/</loc>
+         <lastmod>2025-06-06</lastmod>
+    </url>
+    <url>
+         <loc>https://github.com/McKlay/pytorch-companion-book/PartII_overview/</loc>
+         <lastmod>2025-06-06</lastmod>
+    </url>
+    <url>
+         <loc>https://github.com/McKlay/pytorch-companion-book/PartIV_overview/</loc>
+         <lastmod>2025-06-06</lastmod>
+    </url>
+    <url>
+         <loc>https://github.com/McKlay/pytorch-companion-book/PartI_overview/</loc>
+         <lastmod>2025-06-06</lastmod>
+    </url>
+    <url>
+         <loc>https://github.com/McKlay/pytorch-companion-book/Preface/</loc>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/appendix_api_reference/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/appendix_idioms/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/appendix_shapes/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/chapter10_type_casting/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/chapter11_linalg/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/chapter12_nn_functional/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/chapter13_special/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/chapter14_fft/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/chapter15_utils/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/chapter16_storage_memory/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/chapter17_cuda/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/chapter18_numpy/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/chapter19_debugging/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/chapter1_what_is_torch/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/chapter2_installation_setup/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/chapter3_tensor_fundamentals/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/chapter4_tensor/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/chapter5_dtype_device/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/chapter6_random_seed/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/chapter7_math_ops/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/chapter8_broadcast_shape/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
     <url>
          <loc>https://github.com/McKlay/pytorch-companion-book/chapter9_autograd/</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-06</lastmod>
     </url>
 </urlset>

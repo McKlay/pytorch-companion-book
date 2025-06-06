@@ -12,13 +12,13 @@
         <meta name="author" content="Clay Mark Sarte">
       
       
-        <link rel="canonical" href="https://github.com/McKlay/pytorch-companion-book/chapter16_storage_memory/">
+        <link rel="canonical" href="https://github.com/McKlay/pytorch-companion-book/Preface/">
       
       
-        <link rel="prev" href="../chapter15_utils/">
+        <link rel="prev" href="..">
       
       
-        <link rel="next" href="../PartIV_overview/">
+        <link rel="next" href="../PartI_overview/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>      Chapter 16 - PyTorch Builder’s Companion Book</title>
+        <title>  Preface - PyTorch Builder’s Companion Book</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chapter-16-torchstorage-torchmemory_format-and-low-level-tensor-memory" class="md-skip">
+        <a href="#why-this-book-exists" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 16
+              &nbsp; Preface
             
           </span>
         </div>
@@ -304,10 +304,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../Preface/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    &nbsp; Preface
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -318,6 +338,69 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-this-book-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why This Book Exists
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#who-should-read-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      Who Should Read This
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-tensors-to-gradients-how-this-book-was-born" class="md-nav__link">
+    <span class="md-ellipsis">
+      From Tensors to Gradients: How This Book Was Born
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-youll-learn-and-what-you-wont" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You’ll Learn (and What You Won’t)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-read-this-book-even-if-youre-just-starting-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Read This Book (Even if You’re Just Starting Out)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -741,32 +824,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter 16
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../chapter16_storage_memory/" class="md-nav__link">
         
   
   
@@ -777,185 +838,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#161-what-is-torchstorage" class="md-nav__link">
-    <span class="md-ellipsis">
-      16.1 What is torch.storage?
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="16.1 What is torch.storage?">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#access-the-underlying-storage" class="md-nav__link">
-    <span class="md-ellipsis">
-      ➤ Access the underlying storage:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#162-tensor-views-and-storage-sharing" class="md-nav__link">
-    <span class="md-ellipsis">
-      16.2 Tensor Views and Storage Sharing
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#163-contiguity-and-is_contiguous" class="md-nav__link">
-    <span class="md-ellipsis">
-      16.3 Contiguity and .is_contiguous()
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="16.3 Contiguity and .is_contiguous()">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#make-tensor-contiguous-again" class="md-nav__link">
-    <span class="md-ellipsis">
-      ➤ Make tensor contiguous again:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#164-memory_format-controlling-layout-eg-nhwc-vs-nchw" class="md-nav__link">
-    <span class="md-ellipsis">
-      16.4 memory_format — Controlling Layout (e.g. NHWC vs NCHW)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="16.4 memory_format — Controlling Layout (e.g. NHWC vs NCHW)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#common-formats" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common formats:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#convert-format" class="md-nav__link">
-    <span class="md-ellipsis">
-      ➤ Convert format:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#check-format" class="md-nav__link">
-    <span class="md-ellipsis">
-      ➤ Check format:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#165-saving-and-loading-tensors" class="md-nav__link">
-    <span class="md-ellipsis">
-      16.5 Saving and Loading Tensors
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="16.5 Saving and Loading Tensors">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#save-raw-tensor-uses-underlying-storage" class="md-nav__link">
-    <span class="md-ellipsis">
-      ➤ Save raw tensor (uses underlying storage):
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#write-your-own-binary-format" class="md-nav__link">
-    <span class="md-ellipsis">
-      ➤ Write your own binary format:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#load-from-raw-bytes" class="md-nav__link">
-    <span class="md-ellipsis">
-      ➤ Load from raw bytes:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#166-when-does-this-matter" class="md-nav__link">
-    <span class="md-ellipsis">
-      16.6 When Does This Matter?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#167-summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ 16.7 Summary
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1198,8 +1080,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1208,159 +1088,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#161-what-is-torchstorage" class="md-nav__link">
+  <a href="#why-this-book-exists" class="md-nav__link">
     <span class="md-ellipsis">
-      16.1 What is torch.storage?
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="16.1 What is torch.storage?">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#access-the-underlying-storage" class="md-nav__link">
-    <span class="md-ellipsis">
-      ➤ Access the underlying storage:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#162-tensor-views-and-storage-sharing" class="md-nav__link">
-    <span class="md-ellipsis">
-      16.2 Tensor Views and Storage Sharing
+      Why This Book Exists
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#163-contiguity-and-is_contiguous" class="md-nav__link">
+  <a href="#who-should-read-this" class="md-nav__link">
     <span class="md-ellipsis">
-      16.3 Contiguity and .is_contiguous()
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="16.3 Contiguity and .is_contiguous()">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#make-tensor-contiguous-again" class="md-nav__link">
-    <span class="md-ellipsis">
-      ➤ Make tensor contiguous again:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#164-memory_format-controlling-layout-eg-nhwc-vs-nchw" class="md-nav__link">
-    <span class="md-ellipsis">
-      16.4 memory_format — Controlling Layout (e.g. NHWC vs NCHW)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="16.4 memory_format — Controlling Layout (e.g. NHWC vs NCHW)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#common-formats" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common formats:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#convert-format" class="md-nav__link">
-    <span class="md-ellipsis">
-      ➤ Convert format:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#check-format" class="md-nav__link">
-    <span class="md-ellipsis">
-      ➤ Check format:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#165-saving-and-loading-tensors" class="md-nav__link">
-    <span class="md-ellipsis">
-      16.5 Saving and Loading Tensors
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="16.5 Saving and Loading Tensors">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#save-raw-tensor-uses-underlying-storage" class="md-nav__link">
-    <span class="md-ellipsis">
-      ➤ Save raw tensor (uses underlying storage):
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#write-your-own-binary-format" class="md-nav__link">
-    <span class="md-ellipsis">
-      ➤ Write your own binary format:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#load-from-raw-bytes" class="md-nav__link">
-    <span class="md-ellipsis">
-      ➤ Load from raw bytes:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#166-when-does-this-matter" class="md-nav__link">
-    <span class="md-ellipsis">
-      16.6 When Does This Matter?
+      Who Should Read This
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#167-summary" class="md-nav__link">
+  <a href="#from-tensors-to-gradients-how-this-book-was-born" class="md-nav__link">
     <span class="md-ellipsis">
-      ✅ 16.7 Summary
+      From Tensors to Gradients: How This Book Was Born
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-youll-learn-and-what-you-wont" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You’ll Learn (and What You Won’t)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-read-this-book-even-if-youre-just-starting-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Read This Book (Even if You’re Just Starting Out)
     </span>
   </a>
   
@@ -1384,171 +1150,62 @@
 
 
 
-<h1 id="chapter-16-torchstorage-torchmemory_format-and-low-level-tensor-memory">Chapter 16: <code>torch.storage</code>, <code>torch.memory_format</code>, and Low-Level Tensor Memory<a class="headerlink" href="#chapter-16-torchstorage-torchmemory_format-and-low-level-tensor-memory" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p>“Because knowing how your tensors are stored can save you time, memory, and sanity.”</p>
-</blockquote>
+  <h1>&nbsp; Preface</h1>
+
+<h3 id="why-this-book-exists">Why This Book Exists<a class="headerlink" href="#why-this-book-exists" title="Permanent link">&para;</a></h3>
+<p>Most people meet PyTorch through beginner tutorials that work — until they don’t. You copy a few lines of code, tweak a layer or a tensor, and everything seems fine… until you hit a cryptic shape mismatch, an exploding loss, or a silent autograd bug that derails your model.</p>
+<p>This book was created to solve that.</p>
+<p>The <strong>PyTorch Builder’s Companion Book</strong> is not just a walkthrough of the <code>torch</code> API — it’s a builder’s map of PyTorch’s computational engine. I wrote it after months of working directly with <code>torch.Tensor</code>, tracing bugs in gradient flows, and digging into the internals of autograd, CUDA, and advanced training setups.</p>
+<p>If you’ve ever wondered why your gradients vanish, why <code>.view()</code> fails silently, or how tensors actually move between devices — this book is for you.</p>
+<p>This is a guide <strong>for those who build things and want PyTorch to feel like a tool, not a black box.</strong></p>
 <hr />
-<h2 id="161-what-is-torchstorage">16.1 What is <code>torch.storage</code>?<a class="headerlink" href="#161-what-is-torchstorage" title="Permanent link">&para;</a></h2>
-<p>At its core, every PyTorch Tensor is a <strong>view into a Storage object</strong> — a 1D, contiguous block of memory that holds all the actual data.</p>
-<h3 id="access-the-underlying-storage">➤ Access the underlying storage:<a class="headerlink" href="#access-the-underlying-storage" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
-<span class="n">x_storage</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">storage</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">x_storage</span><span class="p">))</span>  <span class="c1"># Output: [1, 2, 3, 4]</span>
-</code></pre></div>
-x[0][1] accesses the second element, but it’s ultimately referencing an index inside this flat storage.</p>
-<p>This abstraction is mostly invisible in modern PyTorch, but helpful for:</p>
+<h3 id="who-should-read-this">Who Should Read This<a class="headerlink" href="#who-should-read-this" title="Permanent link">&para;</a></h3>
+<p>This book is written for:</p>
 <ul>
-<li>
-<p>Debugging memory errors</p>
-</li>
-<li>
-<p>Understanding views, slicing, and contiguity</p>
-</li>
-<li>
-<p>Saving custom binary formats</p>
-</li>
+<li><strong>Engineers and AI builders</strong> who want to understand the internals of PyTorch — not just use <code>nn.Linear</code> and hope it works.</li>
+<li><strong>TensorFlow or NumPy users</strong> transitioning to PyTorch who want deep API fluency.</li>
+<li><strong>Graduate students or thesis writers</strong> looking to customize training loops or create new architectures.</li>
+<li><strong>Anyone debugging PyTorch code</strong> who wants clarity around tensors, devices, gradients, or performance.</li>
 </ul>
+<p>You don’t need to be a math wizard. But you do need curiosity — and a willingness to follow a tensor from shape to shape, from CPU to GPU, and from forward to backward.</p>
 <hr />
-<h2 id="162-tensor-views-and-storage-sharing">16.2 Tensor Views and Storage Sharing<a class="headerlink" href="#162-tensor-views-and-storage-sharing" title="Permanent link">&para;</a></h2>
-<p>Tensors created from one another may share storage, meaning changes in one affect the other:</p>
-<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># tensor([99, 2, 3, 4]) — same storage!</span>
-</code></pre></div>
-<blockquote>
-<p>✅ If you want independent memory, use .clone():
-<div class="highlight"><pre><span></span><code><span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
-</code></pre></div></p>
-</blockquote>
+<h3 id="from-tensors-to-gradients-how-this-book-was-born">From Tensors to Gradients: How This Book Was Born<a class="headerlink" href="#from-tensors-to-gradients-how-this-book-was-born" title="Permanent link">&para;</a></h3>
+<p>This book didn’t begin as a textbook. It began as survival notes.</p>
+<p>Notes on why <code>.detach()</code> works but <code>.data</code> doesn’t. On why <code>view()</code> fails after <code>.permute()</code>. On how to debug silent failures in custom loss functions. On what exactly happens during backpropagation inside PyTorch.</p>
+<p>Eventually, those notes turned into principles. The principles became diagrams and code. And those became chapters.</p>
+<p>If you’ve ever tried to freeze part of a pretrained model or troubleshoot why <code>.backward()</code> gives <code>None</code>, you're not alone. This book is a distillation of that confusion — turned into clarity.</p>
 <hr />
-<h2 id="163-contiguity-and-is_contiguous">16.3 Contiguity and .is_contiguous()<a class="headerlink" href="#163-contiguity-and-is_contiguous" title="Permanent link">&para;</a></h2>
-<p>Contiguous memory layout = row-major (C-style ordering).</p>
-<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">x_T</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">t</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x_T</span><span class="o">.</span><span class="n">is_contiguous</span><span class="p">())</span>  <span class="c1"># False — transposing breaks contiguity</span>
-</code></pre></div>
-<h3 id="make-tensor-contiguous-again">➤ Make tensor contiguous again:<a class="headerlink" href="#make-tensor-contiguous-again" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="n">x_T_contig</span> <span class="o">=</span> <span class="n">x_T</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()</span>
-</code></pre></div>
-<blockquote>
-<p>⚠️ Functions like .view() only work on contiguous tensors. <br>
-✅ Use .reshape() as a safer alternative.</p>
-</blockquote>
-<hr />
-<h2 id="164-memory_format-controlling-layout-eg-nhwc-vs-nchw">16.4 memory_format — Controlling Layout (e.g. NHWC vs NCHW)<a class="headerlink" href="#164-memory_format-controlling-layout-eg-nhwc-vs-nchw" title="Permanent link">&para;</a></h2>
-<p>In deep learning, layout matters — especially for performance on GPUs or specialized hardware.</p>
-<h3 id="common-formats">Common formats:<a class="headerlink" href="#common-formats" title="Permanent link">&para;</a></h3>
+<h3 id="what-youll-learn-and-what-you-wont">What You’ll Learn (and What You Won’t)<a class="headerlink" href="#what-youll-learn-and-what-you-wont" title="Permanent link">&para;</a></h3>
+<p>You will learn:</p>
 <ul>
-<li>
-<p>torch.contiguous_format → NCHW (batch, channel, height, width)</p>
-</li>
-<li>
-<p>orch.channels_last → NHWC (optimized for conv2d on GPU)</p>
-</li>
+<li>How <code>torch.Tensor</code> works: creation, reshaping, slicing, and memory layout</li>
+<li>The difference between <code>float32</code>, <code>float16</code>, <code>bfloat16</code>, and when to use each</li>
+<li>How autograd builds computation graphs — and how to debug them</li>
+<li>How to use <code>torch.nn.functional</code>, <code>torch.fft</code>, <code>torch.linalg</code>, and more</li>
+<li>Real-world skills: using CUDA, AMP, mixed precision, and multi-GPU training</li>
+<li>How to write PyTorch code that is readable, robust, and fast</li>
 </ul>
-<h3 id="convert-format">➤ Convert format:<a class="headerlink" href="#convert-format" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">)</span>  <span class="c1"># NCHW by default</span>
-<span class="n">x_cl</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">memory_format</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">channels_last</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="check-format">➤ Check format:<a class="headerlink" href="#check-format" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="n">x</span><span class="o">.</span><span class="n">is_contiguous</span><span class="p">(</span><span class="n">memory_format</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">channels_last</span><span class="p">)</span>
-</code></pre></div>
-<blockquote>
-<p>✅ channels_last format boosts performance for 2D convolutions on modern GPUs (A100, RTX, etc.)</p>
-</blockquote>
-<hr />
-<h2 id="165-saving-and-loading-tensors">16.5 Saving and Loading Tensors<a class="headerlink" href="#165-saving-and-loading-tensors" title="Permanent link">&para;</a></h2>
-<h3 id="save-raw-tensor-uses-underlying-storage">➤ Save raw tensor (uses underlying storage):<a class="headerlink" href="#save-raw-tensor-uses-underlying-storage" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="s1">&#39;tensor.pt&#39;</span><span class="p">)</span>
-<span class="n">tensor_loaded</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;tensor.pt&#39;</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="write-your-own-binary-format">➤ Write your own binary format:<a class="headerlink" href="#write-your-own-binary-format" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;my_tensor.bin&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tobytes</span><span class="p">())</span>
-</code></pre></div>
-<h3 id="load-from-raw-bytes">➤ Load from raw bytes:<a class="headerlink" href="#load-from-raw-bytes" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="n">tensor_from_bin</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;my_tensor.bin&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-</code></pre></div>
-<blockquote>
-<p>Useful for embedded systems, device-to-device transfer, legacy platforms.</p>
-</blockquote>
-<hr />
-<h2 id="166-when-does-this-matter">16.6 When Does This Matter?<a class="headerlink" href="#166-when-does-this-matter" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Use Case</th>
-<th>Why It Matters</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Custom tensor manipulation</td>
-<td>Avoid unintended memory sharing</td>
-</tr>
-<tr>
-<td>Model performance (conv2d)</td>
-<td>Layout format can impact speed</td>
-</tr>
-<tr>
-<td>Multi-threading or slicing</td>
-<td>Views can lead to hidden memory bugs</td>
-</tr>
-<tr>
-<td>Saving large datasets</td>
-<td>Storage-level access may be needed</td>
-</tr>
-<tr>
-<td>Deployment to accelerators</td>
-<td>Requires channels_last layout</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="167-summary">✅ 16.7 Summary<a class="headerlink" href="#167-summary" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Concept</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>tensor.storage()</code></td>
-<td>Inspect or share memory manually</td>
-</tr>
-<tr>
-<td><code>.clone()</code></td>
-<td>Create independent memory copy</td>
-</tr>
-<tr>
-<td><code>.is_contiguous()</code></td>
-<td>Check if memory is sequential</td>
-</tr>
-<tr>
-<td><code>.contiguous()</code></td>
-<td>Fix layout to use <code>.view()</code> safely</td>
-</tr>
-<tr>
-<td><code>memory_format</code></td>
-<td>Optimize layout for conv ops (NCHW/NHWC)</td>
-</tr>
-</tbody>
-</table>
+<p>You will <em>not</em> find:</p>
 <ul>
-<li>
-<p>Most users won’t need to use <code>.storage()</code> directly — but for debugging <strong>weird behavior</strong>, it’s a <strong>lifesaver</strong></p>
-</li>
-<li>
-<p>For performance optimization (especially with CNNs), switching to <code>channels_last</code> is one of the <strong>easiest wins</strong></p>
-</li>
-<li>
-<p>Memory format awareness becomes <strong>essential</strong> when building <strong>custom ops</strong>, exporting to <strong>ONNX/TensorRT</strong>, or <strong>scaling</strong> <strong>models</strong></p>
-</li>
+<li>Overly abstract explanations with no runnable code</li>
+<li>High-level metaphors that gloss over mechanics</li>
+<li>Tutorials that "just work" without explaining why</li>
 </ul>
+<p>This is a book about <strong>what PyTorch really does</strong> — and how to wield it with precision.</p>
+<hr />
+<h3 id="how-to-read-this-book-even-if-youre-just-starting-out">How to Read This Book (Even if You’re Just Starting Out)<a class="headerlink" href="#how-to-read-this-book-even-if-youre-just-starting-out" title="Permanent link">&para;</a></h3>
+<p>Each chapter is structured around:</p>
+<ul>
+<li><strong>Conceptual Insight</strong> – what this torch API does and why it matters  </li>
+<li><strong>Code Walkthrough</strong> – annotated, working examples with expected outputs  </li>
+<li><strong>Debugging Tips</strong> – common edge cases and how to fix them  </li>
+<li><strong>Practice Prompt</strong> – real tasks to try on your own  </li>
+<li><strong>Use Case Callout</strong> – where this tool fits into real AI workflows</li>
+</ul>
+<p>If you're coming from TensorFlow, focus on the PyTorch equivalents. If you're new to deep learning, lean on the diagrams, visual cues, and hands-on exercises.</p>
+<p>You don’t need to master everything at once. But by the end, you’ll be able to build, train, debug, and deploy with PyTorch — <strong>not as a user, but as an engineer who understands the framework inside and out.</strong></p>
+<hr />
+<p><em>Written and maintained by <a href="https://www.linkedin.com/in/clay-mark-sarte-283855147/">Clay Mark Sarte</a></em></p>
 
 
 
